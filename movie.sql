@@ -5,6 +5,9 @@ CREATE TABLE "Customer" (
   "card_num_file" SERIAL,
   PRIMARY KEY ("cust_id")
 );
+insert into customer (cust_id,first_name,last_name,card_num_file)
+values
+(1234,'matt','rosko','12345678910')
 
 CREATE TABLE "Tickets" (
   "ticket_id" SERIAL,
@@ -16,6 +19,10 @@ CREATE TABLE "Tickets" (
   PRIMARY KEY ("ticket_id")
 );
 
+insert into tickets (ticket_id,cost,cust_id,movie_id,time_of_purchase,is_child_ticket)
+values
+  (4321,3.99,1234,2468,'2023-10-03 14:30:00',false)
+
 CREATE TABLE "Movie" (
   "movie_id" SERIAL,
   "ticket_id" SERIAL,
@@ -23,6 +30,10 @@ CREATE TABLE "Movie" (
   "Genre" VARCHAR(100),
   PRIMARY KEY ("movie_id")
 );
+
+insert into movie (movie_id,ticket_id,start_time, Genre)
+values
+(2468,4321,'2023-10-03 15:00:00','Romcom')
 
 CREATE TABLE "Concessions" (
   "item_id" SERIAL,
@@ -36,3 +47,6 @@ CREATE TABLE "Concessions" (
     FOREIGN KEY ("cust_id")
       REFERENCES "Customer"("cust_id")
 );
+
+insert into concessions (item_id,item_name,cust_id,sub_total,total_cost,purchase_time)
+  values (4689,'popcorn',1234,4.99,5.25,'2023-10-03 14:45:00')
